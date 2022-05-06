@@ -91,14 +91,6 @@ func run(pass *analysis.Pass) (interface{}, error) {
 								report(pass, ident.Pos(), ident.Name)
 							}
 						}
-					case *ast.ReturnStmt:
-						for _, result := range l.Results {
-							ident, ok := result.(*ast.Ident)
-							if !ok {
-								continue
-							}
-							report(pass, ident.Pos(), ident.Name)
-						}
 					}
 				}
 			}()

@@ -8,7 +8,7 @@ func b(a_a int) { // want "a_a is used under score. You should use mixedCap or M
 
 func c() (c_c int) { // want "c_c is used under score. You should use mixedCap or MixedCap."
 	c_c = 1    // want "c_c is used under score. You should use mixedCap or MixedCap."
-	return c_c // want "c_c is used under score. You should use mixedCap or MixedCap."
+	return c_c // It's never detected, because `c_c` is already detected.
 }
 
 func d() {
