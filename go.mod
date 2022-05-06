@@ -1,6 +1,6 @@
 module github.com/sivchari/nosnakecase
 
-go 1.18
+go 1.17
 
 require (
 	github.com/gostaticanalysis/testutil v0.4.0
