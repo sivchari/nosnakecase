@@ -1,6 +1,6 @@
 package a
 
-func a_() { // want "a_ is used under score. You should use mixedCap or MixedCap"
+func a_() { // want "a_ is used under score. You should use mixedCap or MixedCap."
 }
 
 func b(a_a int) { // want "a_a is used under score. You should use mixedCap or MixedCap."
