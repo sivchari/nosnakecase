@@ -1,7 +1,7 @@
 run:
   timeout: 5m
   skip-files: []
-  go: '1.18'
+  go: '1.17'
 
 linters-settings:
   govet:
@@ -9,7 +9,7 @@ linters-settings:
     disable:
       - fieldalignment
   gocyclo:
-    min-complexity: 12
+    min-complexity: 18
   misspell:
     locale: US
   godox:
