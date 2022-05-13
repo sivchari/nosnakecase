@@ -67,6 +67,9 @@ func run(pass *analysis.Pass) (interface{}, error) {
 
 			go func() {
 				defer wg.Done()
+				if n.Body.List == nil {
+					return
+				}
 				for _, list := range n.Body.List {
 					switch l := list.(type) {
 					case *ast.AssignStmt:
