@@ -67,7 +67,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 
 			go func() {
 				defer wg.Done()
-				if n.Body.List == nil {
+				if n.Body == nil {
 					return
 				}
 				for _, list := range n.Body.List {
