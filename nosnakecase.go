@@ -40,7 +40,12 @@ func run(pass *analysis.Pass) (interface{}, error) {
 }
 
 func report(pass *analysis.Pass, pos token.Pos, name string) {
+	// skip import _ "xxx"
 	if name == "_" {
+		return
+	}
+	// skip package xxx_test
+	if strings.Contains(name, "_test") {
 		return
 	}
 	if strings.Contains(name, "_") {
