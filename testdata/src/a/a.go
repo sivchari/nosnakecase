@@ -1,4 +1,4 @@
-package sandbox
+package sandbox_test
 
 // global variable name with underscore.
 var v_v = 0 // want "v_v is used under score. You should use mixedCap or MixedCap."
