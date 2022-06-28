@@ -1,5 +1,7 @@
 package sandbox_test
 
+import f_mt "fmt" //  want "f_mt contains underscore. You should use mixedCap or MixedCap"
+
 // global variable name with underscore.
 var v_v = 0 // want "v_v contains underscore. You should use mixedCap or MixedCap."
 
@@ -92,6 +94,10 @@ func ff(p int) int {
 func fg() {
 	fgl := func(p_a int) {} // want "p_a contains underscore. You should use mixedCap or MixedCap."
 	fgl(1)
+}
+
+func fh() {
+	f_mt.Println("hello") // want "f_mt contains underscore. You should use mixedCap or MixedCap."
 }
 
 type Foo struct{}
