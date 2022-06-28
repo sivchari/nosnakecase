@@ -23,13 +23,13 @@ var Analyzer = &analysis.Analyzer{
 }
 
 func run(pass *analysis.Pass) (interface{}, error) {
-	inspect := pass.ResultOf[inspect.Analyzer].(*inspector.Inspector)
+	result := pass.ResultOf[inspect.Analyzer].(*inspector.Inspector)
 
 	nodeFilter := []ast.Node{
 		(*ast.Ident)(nil),
 	}
 
-	inspect.Preorder(nodeFilter, func(n ast.Node) {
+	result.Preorder(nodeFilter, func(n ast.Node) {
 		switch n := n.(type) {
 		case *ast.Ident:
 			report(pass, n.Pos(), n.Name)
@@ -44,12 +44,14 @@ func report(pass *analysis.Pass, pos token.Pos, name string) {
 	if name == "_" {
 		return
 	}
+
 	// skip package xxx_test
 	if strings.Contains(name, "_test") {
 		return
 	}
+
 	if strings.Contains(name, "_") {
-		pass.Reportf(pos, "%s is used under score. You should use mixedCap or MixedCap.", name)
+		pass.Reportf(pos, "%s contains underscore. You should use mixedCap or MixedCap.", name)
 		return
 	}
 }
