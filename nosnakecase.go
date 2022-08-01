@@ -46,7 +46,7 @@ func report(pass *analysis.Pass, pos token.Pos, name string) {
 	}
 
 	// skip package xxx_test
-	if strings.Contains(name, "_test") {
+	if strings.HasSuffix(name, "_test") {
 		return
 	}
 
