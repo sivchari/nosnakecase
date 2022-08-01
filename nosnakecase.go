@@ -50,10 +50,14 @@ func report(pass *analysis.Pass, pos token.Pos, name string) {
 		return
 	}
 
-	// If prefix is Test or Benchmark, Fuzz, skip
+	// If prefix is Test, Benchmark, Example, or Fuzz, skip
 	// FYI https://go.dev/blog/examples
-	if strings.HasPrefix(name, "Test") || strings.HasPrefix(name, "Benchmark") || strings.HasPrefix(name, "Fuzz") {
-		return
+	for _, prefix := range []string{
+		"Test", "Benchmark", "Example", "Fuzz",
+	} {
+		if strings.HasPrefix(name, prefix) {
+			return
+		}
 	}
 
 	if strings.Contains(name, "_") {
