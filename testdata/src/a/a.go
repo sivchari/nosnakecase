@@ -5,6 +5,9 @@ import f_mt "fmt" //  want "f_mt contains underscore. You should use mixedCap or
 // global variable name with underscore.
 var v_v = 0 // want "v_v contains underscore. You should use mixedCap or MixedCap."
 
+// global variable name with underscore, but with _test in the middle.
+var do_test_this = 0 // want "do_test_this contains underscore. You should use mixedCap or MixedCap."
+
 // global constant name with underscore.
 const c_c = 0 // want "c_c contains underscore. You should use mixedCap or MixedCap."
 
