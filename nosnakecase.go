@@ -26,13 +26,24 @@ func run(pass *analysis.Pass) (interface{}, error) {
 	result := pass.ResultOf[inspect.Analyzer].(*inspector.Inspector)
 
 	nodeFilter := []ast.Node{
+		(*ast.SelectorExpr)(nil),
 		(*ast.Ident)(nil),
 	}
 
+	skip := map[token.Pos]struct{}{}
+
 	result.Preorder(nodeFilter, func(n ast.Node) {
 		switch n := n.(type) {
+		case *ast.SelectorExpr:
+			// Skip field selectors to avoid throwing false positives on stdlib constants etc.
+			skip[n.Sel.Pos()] = struct{}{}
 		case *ast.Ident:
-			report(pass, n.Pos(), n.Name)
+			pos := n.Pos()
+			if _, ok := skip[pos]; !ok {
+				report(pass, pos, n.Name)
+			} else {
+				delete(skip, pos)
+			}
 		}
 	})
 
