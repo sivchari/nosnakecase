@@ -1,6 +1,9 @@
 package sandbox_test
 
-import f_mt "fmt" //  want "f_mt contains underscore. You should use mixedCap or MixedCap"
+import (
+	f_mt "fmt" //  want "f_mt contains underscore. You should use mixedCap or MixedCap"
+	"os"
+)
 
 // global variable name with underscore.
 var v_v = 0 // want "v_v contains underscore. You should use mixedCap or MixedCap."
@@ -146,3 +149,6 @@ func fnd(
 	p_c int, // want "p_c contains underscore. You should use mixedCap or MixedCap."
 ) {
 }
+
+// skip selectors
+var _ = os.O_APPEND | os.O_WRONLY
